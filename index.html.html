@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🏆 لوحة الشرف — المتوسطة ٦٤ بمكة</title>
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800;900&family=Cairo:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0f1729;--card:#1a2332;--card-hover:#1f2d42;--gold:#ffd700;--silver:#c0c0c0;--bronze:#cd7f32;--accent:#4fc3f7;--accent2:#7c4dff;--text:#e8eaf6;--text-dim:#8892a4;--success:#4caf50;--radius:20px}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Tajawal',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;overflow-x:hidden}
+.bg-fx{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden}
+.bg-fx .orb{position:absolute;border-radius:50%;filter:blur(80px);opacity:.15;animation:fl 12s ease-in-out infinite}
+.bg-fx .orb:nth-child(1){width:400px;height:400px;background:var(--accent);top:-100px;right:-100px}
+.bg-fx .orb:nth-child(2){width:350px;height:350px;background:var(--accent2);bottom:-80px;left:-80px;animation-delay:-4s}
+.bg-fx .orb:nth-child(3){width:300px;height:300px;background:var(--gold);top:50%;left:50%;transform:translate(-50%,-50%);animation-delay:-8s}
+@keyframes fl{0%,100%{transform:translate(0,0) scale(1)}25%{transform:translate(30px,-30px) scale(1.05)}50%{transform:translate(-20px,20px) scale(.95)}75%{transform:translate(20px,10px) scale(1.03)}}
+.wrap{position:relative;z-index:1;max-width:900px;margin:0 auto;padding:24px 16px}
+.hero{text-align:center;padding:40px 20px 20px;animation:fadeIn .8s ease}
+@keyframes fadeIn{from{opacity:0;transform:translateY(-20px)}to{opacity:1;transform:translateY(0)}}
+.hero .trophy{font-size:72px;margin-bottom:8px;animation:bounce 2s ease-in-out infinite}
+@keyframes bounce{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
+.hero h1{font-family:'Cairo',sans-serif;font-size:36px;font-weight:900;background:linear-gradient(135deg,var(--gold),#fff,var(--gold));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hero .sub{font-size:16px;color:var(--text-dim);margin-top:4px}
+.hero .school{display:inline-block;margin-top:12px;padding:8px 20px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:30px;font-size:14px;color:var(--accent)}
+.info-bar{text-align:center;font-size:13px;color:var(--text-dim);margin:8px 0 20px;display:flex;justify-content:center;gap:16px;flex-wrap:wrap}
+.refresh-btn{display:block;margin:0 auto 20px;padding:10px 24px;background:rgba(79,195,247,.15);border:2px solid rgba(79,195,247,.3);border-radius:30px;color:var(--accent);font-family:'Tajawal',sans-serif;font-size:14px;font-weight:600;cursor:pointer;transition:all .3s}
+.refresh-btn:hover{background:rgba(79,195,247,.25)}
+.class-filter{display:flex;justify-content:center;gap:10px;margin-bottom:24px;flex-wrap:wrap}
+.fbtn{padding:10px 24px;border:2px solid rgba(255,255,255,.12);border-radius:30px;background:rgba(255,255,255,.04);color:var(--text-dim);font-family:'Tajawal',sans-serif;font-size:15px;font-weight:600;cursor:pointer;transition:all .3s}
+.fbtn.active{background:linear-gradient(135deg,rgba(79,195,247,.2),rgba(124,77,255,.2));border-color:var(--accent);color:var(--accent)}
+.fbtn:hover:not(.active){border-color:rgba(255,255,255,.3);color:var(--text)}
+
+/* PODIUM */
+.podium{display:flex;justify-content:center;align-items:flex-end;gap:16px;margin-bottom:32px;padding:0 16px;min-height:60px}
+.pod{text-align:center;border-radius:var(--radius);padding:24px 16px 20px;transition:transform .3s;min-width:140px;flex:1;max-width:200px}
+.pod:hover{transform:translateY(-8px)}
+.pod.p1{background:linear-gradient(180deg,rgba(255,215,0,.15),rgba(255,215,0,.03));border:2px solid rgba(255,215,0,.3);order:2;padding-top:32px;min-height:220px}
+.pod.p2{background:linear-gradient(180deg,rgba(192,192,192,.12),rgba(192,192,192,.03));border:2px solid rgba(192,192,192,.25);order:1;min-height:190px}
+.pod.p3{background:linear-gradient(180deg,rgba(205,127,50,.12),rgba(205,127,50,.03));border:2px solid rgba(205,127,50,.25);order:3;min-height:170px}
+.pod .medal{font-size:42px;margin-bottom:8px}
+.pod .rk{font-family:'Cairo',sans-serif;font-size:14px;font-weight:700;margin-bottom:4px}
+.pod.p1 .rk{color:var(--gold)}.pod.p2 .rk{color:var(--silver)}.pod.p3 .rk{color:var(--bronze)}
+.pod .pn{font-size:15px;font-weight:700;margin-bottom:4px;line-height:1.4}
+.pod .pc{font-size:12px;color:var(--text-dim);margin-bottom:8px}
+.pod .ps{font-family:'Cairo',sans-serif;font-size:24px;font-weight:900}
+.pod.p1 .ps{color:var(--gold)}.pod.p2 .ps{color:var(--silver)}.pod.p3 .ps{color:var(--bronze)}
+.pod .pl{font-size:11px;color:var(--text-dim)}
+
+/* LIST */
+.lb{background:var(--card);border-radius:var(--radius);overflow:hidden;border:1px solid rgba(255,255,255,.06);box-shadow:0 8px 40px rgba(0,0,0,.3)}
+.lb-h{display:grid;grid-template-columns:50px 1fr 90px 90px;padding:14px 20px;font-size:13px;font-weight:700;color:var(--text-dim);border-bottom:1px solid rgba(255,255,255,.06);background:rgba(255,255,255,.02)}
+.lb-r{display:grid;grid-template-columns:50px 1fr 90px 90px;padding:14px 20px;align-items:center;border-bottom:1px solid rgba(255,255,255,.04);transition:all .3s;animation:sIn .4s ease backwards}
+.lb-r:hover{background:var(--card-hover)}
+.lb-r .rank{font-family:'Cairo',sans-serif;font-size:18px;font-weight:800;color:var(--text-dim)}
+.lb-r .rank.top{color:var(--gold)}
+.lb-r .si .sn{font-weight:700;font-size:15px}
+.lb-r .si .sc{font-size:12px;color:var(--text-dim)}
+.lb-r .score{font-family:'Cairo',sans-serif;font-weight:800;font-size:18px;color:var(--accent);text-align:center}
+.lb-r .stars{text-align:center;font-size:14px}
+@keyframes sIn{from{opacity:0;transform:translateX(20px)}to{opacity:1;transform:translateX(0)}}
+.no-data{text-align:center;padding:80px 20px;color:var(--text-dim)}
+.no-data .icon{font-size:64px;margin-bottom:16px}
+.no-data h2{font-family:'Cairo',sans-serif;margin-bottom:8px;color:var(--text)}
+.footer{text-align:center;padding:32px 16px;font-size:13px;color:var(--text-dim)}
+.loading-msg{text-align:center;padding:40px;color:var(--text-dim);font-size:16px}
+.spin{display:inline-block;width:24px;height:24px;border:3px solid rgba(255,255,255,.2);border-top-color:var(--accent);border-radius:50%;animation:sp .8s linear infinite;margin-right:8px}
+@keyframes sp{to{transform:rotate(360deg)}}
+@media(max-width:600px){
+  .hero h1{font-size:28px}
+  .podium{gap:8px}
+  .pod{min-width:100px;padding:16px 8px 14px;min-height:auto!important}
+  .pod .medal{font-size:32px}.pod .pn{font-size:13px}.pod .ps{font-size:20px}
+  .lb-h,.lb-r{grid-template-columns:40px 1fr 70px 60px;padding:10px 12px;font-size:12px}
+  .lb-r .score{font-size:15px}.lb-r .rank{font-size:15px}.lb-r .si .sn{font-size:13px}
+}
+</style>
+</head>
+<body>
+<div class="bg-fx"><div class="orb"></div><div class="orb"></div><div class="orb"></div></div>
+<div class="wrap">
+  <div class="hero">
+    <div class="trophy">🏆</div>
+    <h1>لوحة الشرف</h1>
+    <p class="sub">تميّزي وكوني في القمة!</p>
+    <div class="school">🏫 المتوسطة ٦٤ بمكة المكرمة — أ. عواطف العتيبي</div>
+  </div>
+  <div class="info-bar">
+    <span id="lastUpdate"></span>
+    <span id="countInfo"></span>
+  </div>
+  <button class="refresh-btn" onclick="load()">🔄 تحديث</button>
+  <div class="class-filter">
+    <button class="fbtn active" onclick="setF('all',this)">📊 الكل</button>
+    <button class="fbtn" onclick="setF('فصل ٤',this)">فصل ٤</button>
+    <button class="fbtn" onclick="setF('فصل ٦',this)">فصل ٦</button>
+    <button class="fbtn" onclick="setF('فصل ٥',this)">فصل ٥</button>
+  </div>
+  <div class="podium" id="podium"></div>
+  <div class="lb" id="lb"></div>
+  <div class="footer">صُنعت بـ <span style="color:#ef5350">❤</span> لطالبات المتوسطة ٦٤ بمكة</div>
+</div>
+
+<script>
+const SB='https://kqvfymxkvzpnjjrmsabw.supabase.co';
+const SK='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImtxdmZ5bXhrdnpwbmpqcm1zYWJ3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzQ2MzMzMDEsImV4cCI6MjA5MDIwOTMwMX0.c-hQp5IZydQD_UBtehZsKMRYRh6QXWZFJ9KImHyBlkI';
+
+let data=[],curF='all';
+
+async function load(){
+  document.getElementById('lb').innerHTML='<div class="loading-msg"><span class="spin"></span> جاري التحميل...</div>';
+  try{
+    const url=`${SB}/rest/v1/honor_board?select=*&show_on_board=eq.true&order=honor_rank.asc`;
+    const r=await fetch(url,{headers:{'apikey':SK,'Authorization':`Bearer ${SK}`}});
+    if(!r.ok) throw new Error(await r.text());
+    data=await r.json();
+    // Sort by honor_rank (manual order from teacher)
+    data.sort((a,b)=>(a.honor_rank||999)-(b.honor_rank||999));
+    if(data.length>0){
+      const latest=data.reduce((a,b)=>new Date(a.updated_at)>new Date(b.updated_at)?a:b);
+      const d=new Date(latest.updated_at);
+      document.getElementById('lastUpdate').textContent=`آخر تحديث: ${d.toLocaleDateString('ar-SA')} — ${d.toLocaleTimeString('ar-SA',{hour:'2-digit',minute:'2-digit'})}`;
+    }
+    document.getElementById('countInfo').textContent=`${data.length} طالبة متميزة`;
+    render();
+  }catch(e){
+    console.error(e);
+    document.getElementById('lb').innerHTML='<div class="no-data"><div class="icon">⚠️</div><h2>خطأ في الاتصال</h2><p>حاولي مرة أخرى</p></div>';
+  }
+}
+
+function setF(f,btn){curF=f;document.querySelectorAll('.fbtn').forEach(b=>b.classList.remove('active'));btn.classList.add('active');render();}
+
+function getStars(s){return s>=50?'⭐⭐⭐':s>=30?'⭐⭐':s>=10?'⭐':'✨';}
+
+function render(){
+  let list=data;
+  if(curF!=='all') list=list.filter(d=>d.class_name===curF);
+
+  if(!list.length){
+    document.getElementById('podium').innerHTML='';
+    document.getElementById('lb').innerHTML='<div class="no-data"><div class="icon">📭</div><h2>لا توجد بيانات بعد</h2><p>سيتم تحديث اللوحة قريباً</p></div>';
+    return;
+  }
+
+  // PODIUM - Top 3
+  const top3=list.slice(0,3);
+  const medals=['🥇','🥈','🥉'],ranks=['p1','p2','p3'],labels=['المركز الأول','المركز الثاني','المركز الثالث'];
+  let ph='';
+  top3.forEach((s,i)=>{
+    ph+=`<div class="pod ${ranks[i]}"><div class="medal">${medals[i]}</div><div class="rk">${labels[i]}</div><div class="pn">${s.student_name}</div><div class="pc">${s.class_name}</div><div class="ps">${Math.round(s.total_points)}</div><div class="pl">نقطة</div></div>`;
+  });
+  document.getElementById('podium').innerHTML=ph;
+
+  // LIST (all including top 3)
+  let lh=`<div class="lb-h"><div>#</div><div>الطالبة</div><div style="text-align:center">النقاط</div><div style="text-align:center">التميز</div></div>`;
+  list.forEach((s,i)=>{
+    lh+=`<div class="lb-r" style="animation-delay:${i*.04}s">
+      <div class="rank ${i<3?'top':''}">${i+1}</div>
+      <div class="si"><div class="sn">${s.student_name}</div><div class="sc">${s.class_name}</div></div>
+      <div class="score">${Math.round(s.total_points)}</div>
+      <div class="stars">${getStars(s.total_points)}</div>
+    </div>`;
+  });
+  document.getElementById('lb').innerHTML=lh;
+}
+
+setInterval(load,60000);
+load();
+</script>
+</body>
+</html>
